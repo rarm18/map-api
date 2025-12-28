@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { SolarService } from './service/solar.service';
+import { FlattenService } from './service/flatten.service';
+import { CsvService } from './service/csv.service';
 
 @Module({
   imports: [
@@ -11,6 +13,6 @@ import { SolarService } from './service/solar.service';
     }),
   ],
   controllers: [AppController],
-  providers: [SolarService],
+  providers: [SolarService, FlattenService, CsvService],
 })
 export class AppModule {}
