@@ -1,12 +1,23 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import {
+  Controller,
+  Post,
+  Body,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
+import { SolarService } from './service/solar.service';
+import { SolarRequestDto } from './dto/solar-request.dto';
 
-@Controller()
+@Controller('solar')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly solarService: SolarService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('buildingInsights')
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async buildingInsights(@Body() body: SolarRequestDto): Promise<any> {
+    return await this.solarService.processBuildingInsights(
+      body.key,
+      body.parameters,
+    );
   }
 }
