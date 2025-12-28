@@ -34,24 +34,20 @@ The API will run on `http://localhost:3000` by default.
 
 ## API Endpoints
 
-### POST /solar
+### POST /solar/buildingInsights
 
-Fetches solar data for specified locations and saves results as CSV.
+Fetches solar building insights data for specified locations and saves results as CSV.
 
 **Request Body:**
 
 ```json
 {
-  "key": "YOUR_GOOGLE_SOLAR_API_KEY",
+  "key": "YOUR_GOOGLE_MAP_API_KEY",
   "parameters": [
     {
       "latitude": 37.7749,
       "longitude": -122.4194,
-      "radiusMeters": 50,
-      "view": "FULL_LAYERS",
-      "requiredQuality": "HIGH",
-      "exactQualityRequired": false,
-      "pixelSizeMeters": 0.5
+      "requiredQuality": "HIGH"
     }
   ]
 }
@@ -63,11 +59,7 @@ Fetches solar data for specified locations and saves results as CSV.
 - `parameters` (required): Array of location parameters
   - `latitude` (required): Latitude coordinate
   - `longitude` (required): Longitude coordinate
-  - `radiusMeters` (optional): Search radius in meters
-  - `view` (optional): Data view level (e.g., "FULL_LAYERS", "DSM_LAYER")
-  - `requiredQuality` (optional): Required data quality (e.g., "HIGH", "MEDIUM", "LOW")
-  - `exactQualityRequired` (optional): Whether exact quality match is required
-  - `pixelSizeMeters` (optional): Pixel size in meters
+  - `requiredQuality` (optional): Required data quality ("HIGH", "MEDIUM", or "LOW")
 
 **Response:**
 Returns flattened JSON array of solar data. Each response is also saved as CSV in the `output/` directory with a timestamp.
@@ -75,7 +67,7 @@ Returns flattened JSON array of solar data. Each response is also saved as CSV i
 **Example:**
 
 ```bash
-curl -X POST http://localhost:3000/solar \
+curl -X POST http://localhost:3000/solar/buildingInsights \
   -H "Content-Type: application/json" \
   -d '{
     "key": "YOUR_API_KEY",
