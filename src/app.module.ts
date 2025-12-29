@@ -1,9 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { SolarService } from './service/solar.service';
-import { FlattenService } from './service/flatten.service';
-import { CsvService } from './service/csv.service';
+import { SolarModule } from './solar/solar.module';
 
 @Module({
   imports: [
@@ -11,8 +8,7 @@ import { CsvService } from './service/csv.service';
       isGlobal: true,
       envFilePath: '.env',
     }),
+    SolarModule,
   ],
-  controllers: [AppController],
-  providers: [SolarService, FlattenService, CsvService],
 })
 export class AppModule {}

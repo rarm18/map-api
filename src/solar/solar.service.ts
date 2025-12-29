@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import axios from 'axios';
 import { SolarParameterDto } from '../dto/solar-request.dto';
-import { FlattenService } from './flatten.service';
-import { CsvService } from './csv.service';
+import { FlattenService } from '../service/flatten.service';
+import { CsvService } from '../service/csv.service';
 
 @Injectable()
 export class SolarService {

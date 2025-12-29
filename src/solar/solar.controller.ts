@@ -5,11 +5,11 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { SolarService } from './service/solar.service';
-import { SolarRequestDto } from './dto/solar-request.dto';
+import { SolarService } from './solar.service';
+import { SolarRequestDto } from '../dto/solar-request.dto';
 
 @Controller('solar')
-export class AppController {
+export class SolarController {
   constructor(private readonly solarService: SolarService) {}
 
   @Post('buildingInsights')
